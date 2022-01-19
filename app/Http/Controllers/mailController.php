@@ -11,7 +11,6 @@ class mailController extends Controller
     private function getRules()
     {
         return [
-            'from_email' => 'email',
             'from_name' => 'min:1|max:998',
             'to_email' => 'required|array',
             'to_email.*' => 'email',
