@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\MailRequest;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Mail;
 
 class MailController extends Controller
 {
-    public function send(MailRequest $request)
+    public function send(MailRequest $request): JsonResponse
     {
         $from_email = $request['from_email'] ?? env('MAIL_USERNAME');
         $from_name = $request['from_name'] ?? '';
@@ -31,10 +32,10 @@ class MailController extends Controller
                 throw new \Exception(Mail::failures());
             }
 
-            return $this->jsonResponse(['result' => 'good']);
+            return $this->returnResponseOK();
 
         } catch (\Exception $e) {
-            return $this->jsonResponse(['result' => 'Error', 'data' => $e->getMessage()], 400);
+            return $this->returnResponseError($e->getMessage());
         }
     }
 }
