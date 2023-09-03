@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
-class mailController extends Controller
+class MailController extends Controller
 {
     private function getRules()
     {
